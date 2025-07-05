@@ -14,13 +14,23 @@ namespace TodoApp.Data
 
         public AppDbContext(DbContextOptions options) : base(options)
         {
-
         }
 
-        public DbSet<Todo> Todos { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Todo> Todos => Set<Todo>();
+        public DbSet<User> Users => Set<User>();
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Todo>().ToTable("Todos");
+            modelBuilder.Entity<User>().ToTable("Users");
+            // Configure relationships, indexes, etc. if needed
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Todos)
+                .WithOne(t => t.User)
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
     
 }
