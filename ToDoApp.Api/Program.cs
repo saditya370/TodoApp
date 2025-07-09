@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using TodoApp.Business.IServices;
+using TodoApp.Business.Services;
 using TodoApp.Data;
+using TodoApp.Data.IRepository;
+using TodoApp.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +16,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Registering the UserRepository and UserService
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
