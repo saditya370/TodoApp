@@ -18,7 +18,7 @@ namespace TodoApp.Data.Repository
             _context = context;
         }
 
-        public async Task<User> CreateUser(User user)
+        public async Task<User> CreateUser(User user )
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -54,6 +54,10 @@ namespace TodoApp.Data.Repository
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return true;
+        }
+        public async Task<User?> GetUserByUsername(string username)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
     }
 }

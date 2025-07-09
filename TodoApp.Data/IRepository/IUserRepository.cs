@@ -9,5 +9,7 @@ namespace TodoApp.Data.IRepository
         Task<IEnumerable<User>> GetAllUsers();
         Task<User> UpdateUser(User user);
         Task<bool> DeleteUser(int id);
+        Task<User?> GetUserByUsername(string username);
+
     }
 }

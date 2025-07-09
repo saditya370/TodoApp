@@ -25,7 +25,7 @@ namespace ToDoApp.Api.Controllers
 
             try
             {
-                var user = await _userService.CreateUser(createUserDto.Username, createUserDto.Email, createUserDto.FullName);
+                var user = await _userService.CreateUser(createUserDto.Username, createUserDto.Email, createUserDto.FullName ,createUserDto.Password);
                 return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
             }
             catch (Exception ex)

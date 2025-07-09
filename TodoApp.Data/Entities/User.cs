@@ -21,11 +21,12 @@ namespace TodoApp.Data.Entities
 
         public string FullName { get; set; }
 
+        [Required]
+        public string PasswordHash { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public List<Todo> Todos { get; set; } = new List<Todo>();
-
-
-
+     
     }
 }
