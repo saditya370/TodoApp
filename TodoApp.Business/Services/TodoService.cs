@@ -203,5 +203,24 @@ namespace TodoApp.Business.Services
                 Username = t.User?.Username ?? string.Empty
             });
         }
+
+        public async Task<IEnumerable<TodoServiceModels>> SearchTodos(string query)
+        {
+           var todos = await _todoRepository.SearchTodos(query);
+            return todos.Select(t => new TodoServiceModels
+            {
+                Id = t.Id,
+                Title = t.Title,
+                Description = t.Description,
+                IsCompleted = t.IsCompleted,
+                CreatedAt = t.CreatedAt,
+                CompletedAt = t.CompletedAt,
+                Priority = t.Priority,
+                Category = t.Category,
+                DueDate = t.DueDate,
+                UserId = t.UserId,
+                Username = t.User?.Username ?? string.Empty
+            });
+        }
     }
 }

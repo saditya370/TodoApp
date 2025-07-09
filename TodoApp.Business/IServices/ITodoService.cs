@@ -13,5 +13,8 @@ namespace TodoApp.Business.IServices
         Task<bool> MarkTodoAsCompleted(int id);
         Task<IEnumerable<TodoServiceModels>> GetTodosByCategory(string category);
         Task<IEnumerable<TodoServiceModels>> GetTodosByPriority(int priority);
+      
+
+        Task <IEnumerable<TodoServiceModels>> SearchTodos(string query);
     }
 }

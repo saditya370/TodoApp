@@ -176,5 +176,26 @@ namespace ToDoApp.Api.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchTodos([FromQuery] string query)
+        {
+            if (query == null || query == "")
+            {
+                return BadRequest("Query parameter cannot be null.");
+            }
+
+            try
+            {
+                var results = await _todoService.SearchTodos(query);
+                return Ok(results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
     }
+
+
 }

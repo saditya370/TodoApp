@@ -83,6 +83,16 @@ namespace TodoApp.Data.Repository
                 .OrderBy(t => t.DueDate)
                 .ToListAsync();
         }
-    
+
+        public async Task<IEnumerable<Todo>> SearchTodos(string query)
+        {
+            return await _context.Todos
+                .Include(t => t.User)
+                .Where(t => t.Title.Contains(query) || t.Description.Contains(query))
+                .OrderBy(t => t.DueDate)
+                .ToListAsync();
+
+
+        }
     }
 }
