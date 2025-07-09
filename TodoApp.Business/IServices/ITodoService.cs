@@ -16,5 +16,6 @@ namespace TodoApp.Business.IServices
       
 
         Task <IEnumerable<TodoServiceModels>> SearchTodos(string query);
+        Task<IEnumerable<TodoServiceModels>> GetOverdueTodos();
     }
 }

@@ -13,5 +13,6 @@ namespace TodoApp.Data.IRepository
         Task<IEnumerable<Todo>> GetTodosByCategory(string category);
         Task<IEnumerable<Todo>> GetTodosByPriority(int priority);
         Task<IEnumerable<Todo>> SearchTodos(string query);
+        Task<IEnumerable<Todo>> GetOverdueTodos();
     }
 }

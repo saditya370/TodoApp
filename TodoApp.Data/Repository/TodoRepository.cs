@@ -94,5 +94,15 @@ namespace TodoApp.Data.Repository
 
 
         }
+
+        public async Task<IEnumerable<Todo>> GetOverdueTodos()
+        {
+            var now = DateTime.UtcNow;
+
+            return await _context.Todos
+                .Include(t => t.User)
+                .Where(t => t.DueDate < now && !t.IsCompleted)
+                .ToListAsync();
+        }
     }
 }

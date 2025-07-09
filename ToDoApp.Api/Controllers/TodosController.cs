@@ -195,6 +195,16 @@ namespace ToDoApp.Api.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+
+        [HttpGet("overdue")]
+
+        public async Task<IActionResult> GetOverdueTodos()
+        {
+            var results = await _todoService.GetOverdueTodos();
+            return Ok(results);
+        }
+
     }
 
 
